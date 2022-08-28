@@ -1,0 +1,20 @@
+
+ui.frontend
+ui.content
+ui.tests
+ui.config
+target
+webpack.bundles
+core
+webpack.project
+internals
+clientlibs-webpack-**
+*.yml
+*.json
+*.md
+README
+*.min.js
+*.min.css
+
+# specific files
+body-end.html

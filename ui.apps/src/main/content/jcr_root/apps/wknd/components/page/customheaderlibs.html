@@ -29,3 +29,21 @@
 
 <!--/* Favicons */-->
 <sly data-sly-include="favicons.html"></sly>
+
+<sly data-sly-use.clientlib="/apps/wknd/templates/customclientlibs/clientlibs.html">
+    <!--/* Global Styles */-->
+    <sly
+        data-sly-call="${clientlib.css @ categories='wknd.webpack.global', cssLoadMode='preload stylesheet'}" />
+    <sly
+        data-sly-call="${clientlib.css @ categories='wknd.webpack.components', cssLoadMode='preload stylesheet'}" />
+
+    <!--/* Global Scripts */-->
+    <sly data-sly-call="${clientlib.js @ categories='wknd.webpack.runtime', jsLoadMode='defer'}" />
+
+    <sly data-sly-call="${clientlib.js @ categories='wknd.webpack.components', jsLoadMode='defer'}" />
+
+    <!--/* Autoring Clientlibs */-->
+    <sly
+        data-sly-test="${!wcmmode.disabled}"
+        data-sly-call="${clientlib.all @ categories='wknd.webpack.authoring', jsLoadMode='defer', cssLoadMode='preload stylesheet'}" />
+</sly>

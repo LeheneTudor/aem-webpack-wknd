@@ -81,3 +81,9 @@ buildNumber.properties
 ### Visual Studio ###
 .vscode
 .history
+
+ui.apps/node/
+ui.apps/node_modules/
+ui.apps/src/main/content/jcr_root/apps/wknd/clientlibs/webpack.bundles/resources/
+ui.apps/src/main/content/jcr_root/apps/wknd/clientlibs/clientlibs-webpack-**
+ui.apps/src/main/content/jcr_root/apps/wknd/clientlibs/clientlib-site
