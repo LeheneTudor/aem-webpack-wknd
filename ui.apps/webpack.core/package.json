@@ -61,7 +61,9 @@
     "dependencies": {
         "@babel/runtime": "^7.9.6",
         "core-js": "^3.6.5",
-        "regenerator-runtime": "^0.13.5"
+        "in-view": "^0.6.1",
+        "regenerator-runtime": "^0.13.5",
+        "swiper": "^8.4.2"
     },
     "resolutions": {
         "trim-newlines": "3.0.1",
