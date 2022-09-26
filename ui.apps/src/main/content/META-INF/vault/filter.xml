@@ -4,4 +4,5 @@
     <filter root="/apps/wknd/components"/>
     <filter root="/apps/wknd/i18n"/>
     <filter root="/apps/msm/wknd_blueprint" mode="merge"/>
+    <filter root="/apps/wknd/templates"/>
 </workspaceFilter>
