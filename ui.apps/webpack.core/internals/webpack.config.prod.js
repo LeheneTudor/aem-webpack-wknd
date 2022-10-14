@@ -57,7 +57,7 @@ const WEBPACK_CONFIG_BASE = {
                 ],
             },
             {
-                test: /.(jpg|jpeg|png|mp3)$/,
+                test: /.(jpg|jpeg|png|mp3|svg)$/,
                 use: ['file-loader'],
             },
         ],
