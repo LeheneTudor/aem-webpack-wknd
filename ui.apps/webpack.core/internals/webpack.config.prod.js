@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
-const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin');
 
 const WEBPACK_CONFIG_BASE = {
     name: 'prod',
@@ -98,13 +97,6 @@ const WEBPACK_CONFIG_BASE = {
             cssProcessorPluginOptions: {
                 preset: ['default', { discardComments: { removeAll: true } }],
             },
-        }),
-        new BrotliGzipPlugin({
-            asset: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: /\.(js|css|html|svg)$/,
-            threshold: 10240,
-            minRatio: 0.8,
         }),
         new AemClientlibGeneratorPlugin(CLIENTLIB_CONFIG),
     ],
