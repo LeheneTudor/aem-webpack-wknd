@@ -1,7 +1,5 @@
 const path = require('path');
-const CONFIG = require('./../../webpack.project');
 const CLIENTLIB_CONFIG = require('./clientlib.config.dev');
-const NODE_MODULES = path.join(__dirname, '../node_modules');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const extractCSS = new MiniCssExtractPlugin({
     filename: '[name].bundle.css',
@@ -11,9 +9,10 @@ const OptimizeCss = new OptimizeCssAssetsPlugin({
     assetNameRegExp: /\.bundle.css/g,
 });
 const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WEBPACK_CONFIG_COMMON = require('./webpack.config.common');
+const { merge } = require('webpack-merge');
 
-const WEBPACK_CONFIG_BASE = {
+const WEBPACK_CONFIG_DEV = {
     name: 'dev',
     mode: 'development',
     devtool: 'inline-source-map',
@@ -87,45 +86,12 @@ const WEBPACK_CONFIG_BASE = {
     },
     output: {
         filename: '[name].bundle.js',
-        library: CONFIG.aem.libraryName.replace(/[\s-]/, '_'),
-        publicPath:
-            '/etc.clientlibs/' +
-            CONFIG.aem.projectFolderName +
-            '/clientlibs/webpack.bundles/resources/',
-        path:
-            CONFIG.aem.outputJcrRoot +
-            '/apps/' +
-            CONFIG.aem.projectFolderName +
-            '/clientlibs/webpack.bundles/resources',
     },
     plugins: [
         extractCSS,
         OptimizeCss,
         new AemClientlibGeneratorPlugin(CLIENTLIB_CONFIG),
-        new CleanWebpackPlugin({
-            dry: false,
-            dangerouslyAllowCleanPatternsOutsideProject: true,
-            cleanOnceBeforeBuildPatterns: [
-                '**/*',
-                path.join(
-                    CONFIG.aem.outputJcrRoot +
-                        '/apps/' +
-                        CONFIG.aem.projectFolderName +
-                        '/clientlibs/clientlibs-webpack-**/*'
-                ),
-            ],
-        }),
     ],
-    resolve: {
-        extensions: ['.js', '.scss', '.css'],
-        modules: [
-            CONFIG.aem.jcrRoot +
-                '/apps/' +
-                CONFIG.aem.projectFolderName +
-                '/components/webpack.resolve/',
-            NODE_MODULES,
-        ],
-    },
     watchOptions: {
         ignored: [
             /node_modules/,
@@ -134,24 +100,6 @@ const WEBPACK_CONFIG_BASE = {
             '**/*.bundle.js',
         ],
     },
-    optimization: {
-        splitChunks: {
-            maxInitialRequests: Infinity,
-            minSize: 0,
-            cacheGroups: {
-                vendor: {
-                    chunks: 'all',
-                    name: 'webpack-vendor',
-                    test: /[\\/]node_modules[\\/]/,
-                    enforce: true,
-                    minChunks: 2,
-                },
-            },
-        },
-        runtimeChunk: {
-            name: 'runtime',
-        },
-    },
 };
 
-module.exports = WEBPACK_CONFIG_BASE;
+module.exports = merge(WEBPACK_CONFIG_COMMON, WEBPACK_CONFIG_DEV);
