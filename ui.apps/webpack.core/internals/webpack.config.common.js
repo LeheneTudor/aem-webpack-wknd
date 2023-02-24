@@ -7,6 +7,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
 
 const WEBPACK_CONFIG_COMMON = {
+    module: {
+        rules: [
+            {
+                test: /.(jpg|jpeg|png|mp3|svg)$/,
+                use: ['file-loader'],
+            },
+        ],
+    },
     output: {
         library: CONFIG.aem.libraryName.replace(/[\s-]/, '_'),
         publicPath:

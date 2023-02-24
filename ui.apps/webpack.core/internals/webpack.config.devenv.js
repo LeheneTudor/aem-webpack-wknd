@@ -56,10 +56,6 @@ const WEBPACK_CONFIG_DEVENV = {
                     },
                 ],
             },
-            {
-                test: /.(jpg|jpeg|png|mp3|svg)$/,
-                use: ['file-loader'],
-            },
         ],
     },
     output: {
