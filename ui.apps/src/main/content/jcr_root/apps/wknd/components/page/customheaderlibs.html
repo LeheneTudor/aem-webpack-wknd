@@ -13,37 +13,57 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
 
 <!--/* Google Fonts */-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Asar&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Asar&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap"
+  rel="stylesheet"
+/>
 
 <!--/* Include Context Hub */-->
-<sly data-sly-resource="${'contexthub' @ resourceType='granite/contexthub/components/contexthub'}"/>
+<sly
+  data-sly-resource="${'contexthub' @ resourceType='granite/contexthub/components/contexthub'}"
+/>
 
 <!--/* Manifest */-->
-<meta name="theme-color" content="#FFEA00">
-<link rel="manifest" href="/etc.clientlibs/wknd/clientlibs/clientlib-site/resources/manifest.json">
+<meta name="theme-color" content="#FFEA00" />
+<link
+  rel="manifest"
+  href="/etc.clientlibs/wknd/clientlibs/clientlib-site/resources/manifest.json"
+/>
 
 <!--/* Favicons */-->
 <sly data-sly-include="favicons.html"></sly>
 
-<sly data-sly-use.clientlib="/apps/wknd/templates/customclientlibs/clientlibs.html">
-    <!--/* Global Styles */-->
-    <sly
-        data-sly-call="${clientlib.css @ categories='wknd.webpack.global', cssLoadMode='preload stylesheet'}" />
-    <sly
-        data-sly-call="${clientlib.css @ categories='wknd.webpack.components', cssLoadMode='preload stylesheet'}" />
+<sly
+  data-sly-use.clientlib="/apps/wknd/templates/customclientlibs/clientlibs.html"
+>
+  <!--/* Global Styles */-->
+  <sly
+    data-sly-call="${clientlib.css @ categories='wknd.webpack.global', cssLoadMode='preload stylesheet'}"
+  />
+  <sly
+    data-sly-call="${clientlib.css @ categories='wknd.webpack.components', cssLoadMode='preload stylesheet'}"
+  />
 
-    <!--/* Global Scripts */-->
-    <sly data-sly-call="${clientlib.js @ categories='wknd.webpack.runtime', jsLoadMode='defer'}" />
+  <!--/* Global Scripts */-->
+  <sly
+    data-sly-call="${clientlib.js @ categories='wknd.webpack.runtime', jsLoadMode='defer'}"
+  />
 
-    <sly data-sly-call="${clientlib.js @ categories='wknd.webpack.components', jsLoadMode='defer'}" />
+  <sly
+    data-sly-call="${clientlib.js @ categories='wknd.webpack.components', jsLoadMode='defer'}"
+  />
 
-    <!--/* Autoring Clientlibs */-->
-    <sly
-        data-sly-test="${!wcmmode.disabled}"
-        data-sly-call="${clientlib.all @ categories='wknd.webpack.authoring', jsLoadMode='defer', cssLoadMode='preload stylesheet'}" />
+  <!--/* Autoring Clientlibs */-->
+  <sly
+    data-sly-test="${!wcmmode.disabled}"
+    data-sly-call="${clientlib.all @ categories='wknd.webpack.authoring', jsLoadMode='defer', cssLoadMode='preload stylesheet'}"
+  />
 </sly>

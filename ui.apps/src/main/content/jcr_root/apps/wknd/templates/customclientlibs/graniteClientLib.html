@@ -1,5 +1,6 @@
 <template
-    data-sly-template.include="${@ categories='Client Library categories', mode='optional: JS or CSS, case-insensitve', jsLoadMode, cssLoadMode}"
-    data-sly-use.clientlib="${'apps.wknd.templates.customclientlibs.WKNDClientLibUseObject' @ categories=categories, mode=mode, jsLoadMode=jsLoadMode, cssLoadMode=cssLoadMode}">
-    ${clientlib.include @ context='unsafe'}
+  data-sly-template.include="${@ categories='Client Library categories', mode='optional: JS or CSS, case-insensitve', jsLoadMode, cssLoadMode}"
+  data-sly-use.clientlib="${'apps.wknd.templates.customclientlibs.WKNDClientLibUseObject' @ categories=categories, mode=mode, jsLoadMode=jsLoadMode, cssLoadMode=cssLoadMode}"
+>
+  ${clientlib.include @ context='unsafe'}
 </template>

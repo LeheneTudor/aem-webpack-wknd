@@ -1,8 +1,8 @@
 .component-webpack-template {
-    color: red;
-    border: 1px solid green;
+  color: red;
+  border: 1px solid green;
 
-    &::before {
-        content: 'this is on authoring only';
-    }
+  &::before {
+    content: "this is on authoring only";
+  }
 }

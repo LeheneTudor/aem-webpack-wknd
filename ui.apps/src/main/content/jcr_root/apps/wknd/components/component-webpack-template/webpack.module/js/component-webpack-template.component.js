@@ -1,7 +1,5 @@
 function initComponent() {
-    console.log('example component initialized...')
+  console.log("example component initialized...");
 }
 
-export {
-    initComponent
-}
+export { initComponent };

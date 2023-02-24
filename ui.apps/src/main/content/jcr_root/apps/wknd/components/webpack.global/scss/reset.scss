@@ -22,47 +22,47 @@ footer,
 dl,
 dd,
 dt {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    // Hide persistent scrollbar in IE (10/11) and Edge
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+  // Hide persistent scrollbar in IE (10/11) and Edge
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 body {
-    text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
 }
 
 ul,
 ol {
-    list-style: none;
+  list-style: none;
 }
 
 img {
-    border: 0;
-    display: block;
-    max-width: 100%;
+  border: 0;
+  display: block;
+  max-width: 100%;
 }
 
 // Firefox input fix
 input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 // Normalise form field line-height in webkit browsers
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder,
 select::-webkit-input-placeholder {
-    line-height: normal;
+  line-height: normal;
 }
 
 * {
-    &,
-    &::before,
-    &::after {
-        box-sizing: border-box;
-    }
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
 }

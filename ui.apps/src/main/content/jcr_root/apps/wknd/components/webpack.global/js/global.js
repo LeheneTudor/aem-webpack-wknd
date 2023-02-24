@@ -1,1 +1,1 @@
-console.log('globally included code goes here...');
+console.log("globally included code goes here...");

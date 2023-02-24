@@ -16,25 +16,34 @@
 
 <!--/* Sign In/Sign Out Buttons for WKND Site */-->
 
-<div data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
-     data-sly-test.hasContent="${properties.signInLabel != '' && properties.signInXfPath != '' && properties.signOutLabel != '' && properties.signOutXfPath != '' }"
-     class="wknd-sign-in-buttons"
-     data-current-user-url="/libs/granite/security/currentuser.json">
+<div
+  data-sly-use.placeholderTemplate="core/wcm/components/commons/v1/templates.html"
+  data-sly-test.hasContent="${properties.signInLabel != '' && properties.signInXfPath != '' && properties.signOutLabel != '' && properties.signOutXfPath != '' }"
+  class="wknd-sign-in-buttons"
+  data-current-user-url="/libs/granite/security/currentuser.json"
+>
+  <span
+    class="wknd-sign-in-buttons__button wknd-sign-in-buttons__button--greeting"
+    id="wkndGreetingLabel"
+    >${properties.greetingLabel @ i18n}</span
+  >
 
-    <span
-       class="wknd-sign-in-buttons__button wknd-sign-in-buttons__button--greeting"
-       id="wkndGreetingLabel"
-       >${properties.greetingLabel @ i18n}</span>
+  <a
+    href="#sign-in"
+    class="wknd-sign-in-buttons__button wknd-sign-in-buttons__button--sign-in"
+    data-modal-url="${ properties.signInXfPath @ selectors='content', extension = 'html'}"
+    data-sly-test="${properties.signInLabel != '' }"
+    >${properties.signInLabel}</a
+  >
 
-    <a href="#sign-in"
-       class="wknd-sign-in-buttons__button wknd-sign-in-buttons__button--sign-in"
-       data-modal-url="${ properties.signInXfPath @ selectors='content', extension = 'html'}"
-       data-sly-test="${properties.signInLabel != '' }">${properties.signInLabel}</a>
-
-    <a href="#sign-out"
-       class="wknd-sign-in-buttons__button wknd-sign-out-buttons__button--sign-out"
-       data-modal-url="${ properties.signOutXfPath @ selectors='content', extension = 'html'}"
-       data-sly-test="${properties.signOutLabel != '' }">${properties.signOutLabel}</a>
-
+  <a
+    href="#sign-out"
+    class="wknd-sign-in-buttons__button wknd-sign-out-buttons__button--sign-out"
+    data-modal-url="${ properties.signOutXfPath @ selectors='content', extension = 'html'}"
+    data-sly-test="${properties.signOutLabel != '' }"
+    >${properties.signOutLabel}</a
+  >
 </div>
-<sly data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!hasContent}"></sly>
+<sly
+  data-sly-call="${placeholderTemplate.placeholder @ isEmpty=!hasContent}"
+></sly>
