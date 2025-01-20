@@ -43,33 +43,6 @@ const WEBPACK = {
 };
 
 /**
- * ESLINT
- *
- * The linting rules defined here are pretty loose, allowing you to integrate the Webpack setup
- * more easily into your existing project. However, we recommend to make the rules more strict –
- * as strict as possible.
- */
-const ESLINT = {
-    // Optional: Replace `eslint:recommended` with `eslint-config-infield` and run
-    // `npm install --save-dev eslint-config-infield` for stricter linting rules
-    extends: 'eslint:recommended',
-
-    // If you want to define variables that are available across various processed JavaScript
-    // files, define them here. More details: http://eslint.org/docs/user-guide/configuring#specifying-globals
-    globals: {
-        google: true
-    },
-
-    rules: {
-        'no-console': 'off',
-        options: {
-            emitError: true,
-            emitWarning: true,
-        },
-    },
-};
-
-/**
  * STYLELINT
  */
 const STYLELINT = {
@@ -130,7 +103,6 @@ const BABEL = {
 module.exports = {
     aem: AEM,
     babel: BABEL,
-    eslint: ESLINT,
     stylelint: STYLELINT,
     webpack: WEBPACK,
 };

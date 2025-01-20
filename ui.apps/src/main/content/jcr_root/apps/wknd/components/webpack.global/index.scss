@@ -1,4 +1,5 @@
-@import "scss/globals";
+// mixins, variables, etc. (none generating code snippets)
+@use "./scss/globals.scss";
 
 // Base reset
-@import "./scss/reset.scss";
+@use "./scss/reset.scss";

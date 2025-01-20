@@ -1,8 +1,7 @@
-import "scss/lightgallery";
-import lightGallery from "lightgallery";
+import lightGallery from "@module/lightgallery";
 
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
+import lgThumbnail from "@module/lightgallery/plugins/thumbnail";
+import lgZoom from "@module/lightgallery/plugins/zoom";
 
 function initGallery(swiper) {
   const galleryEl = swiper[0].el.querySelector(".js-gallery");

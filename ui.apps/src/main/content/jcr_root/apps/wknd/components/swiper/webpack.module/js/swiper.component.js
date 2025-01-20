@@ -1,4 +1,4 @@
-import Swiper from "swiper";
+import Swiper from "@module/swiper";
 
 function initComponent() {
   const swiper = new Swiper(".swiper");

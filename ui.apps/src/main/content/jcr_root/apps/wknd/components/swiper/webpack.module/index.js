@@ -1,4 +1,4 @@
-import inView from "in-view";
+import inView from "@module/in-view";
 
 inView.offset(-200);
 inView(".swiper").once("enter", () => {

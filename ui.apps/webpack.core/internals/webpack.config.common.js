@@ -1,18 +1,20 @@
 const path = require('path');
 const CONFIG = require('./../../webpack.project');
-const CLIENTLIB_CONFIG = require('./clientlib.config.prod');
-const NODE_MODULES = path.join(__dirname, '../node_modules');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const WEBPACK_CONFIG_COMMON = {
+    target: 'browserslist',
     module: {
         rules: [
             {
-                test: /.(jpg|jpeg|png|mp3|svg)$/,
-                use: ['file-loader'],
-            },
+                test: /\.(jpg|jpeg|png|mp3|svg)$/,
+                type: 'asset/resource',
+                include: /node_modules/,
+                generator: {
+                    filename: 'fonts/[name][ext]',
+                },
+            }
         ],
     },
     output: {
@@ -28,6 +30,10 @@ const WEBPACK_CONFIG_COMMON = {
             '/clientlibs/webpack.bundles/resources',
     },
     plugins: [
+        new ESLintPlugin({
+            extensions: ['js', 'jsx'],
+            fix: true,
+        }),
         new CleanWebpackPlugin({
             dry: false,
             dangerouslyAllowCleanPatternsOutsideProject: true,
@@ -44,13 +50,16 @@ const WEBPACK_CONFIG_COMMON = {
     ],
     resolve: {
         extensions: ['.js', '.scss', '.css'],
-        modules: [
-            CONFIG.aem.jcrRoot +
-            '/apps/' +
-            CONFIG.aem.projectFolderName +
-            '/components/webpack.resolve/',
-            NODE_MODULES,
-        ],
+        alias: {
+            '@module': path.resolve(__dirname, '../node_modules'),
+            '@globals': path.resolve(__dirname, '../../src/main/content/jcr_root/apps/wknd/components/webpack.global'),
+            '@resolve': path.resolve(__dirname, '../../src/main/content/jcr_root/apps/wknd/components/webpack.resolve'),
+        },
+        fallback: {
+            "crypto": false,
+            "path": false,
+            "fs": false
+        }
     },
     optimization: {
         splitChunks: {

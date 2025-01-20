@@ -1,7 +1,6 @@
 const path = require('path');
 const CLIENTLIB_CONFIG = require('./clientlib.config.prod');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
 const WEBPACK_CONFIG_COMMON = require('./webpack.config.common');
 const { merge } = require('webpack-merge');
@@ -15,22 +14,7 @@ const WEBPACK_CONFIG_DEVENV = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        query: require('./babel.config.js'),
-                    },
-                    {
-                        loader: 'eslint-loader',
-                        query: {
-                            configFile: path.resolve(
-                                __dirname,
-                                './eslint.config.js'
-                            ),
-                            fix: false,
-                        },
-                    },
-                ],
+                use: [],
             },
             {
                 test: /\.s?css$/,
@@ -43,17 +27,22 @@ const WEBPACK_CONFIG_DEVENV = {
                     {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: () => [
-                                require('autoprefixer')()
-                            ]
-                        }
+                            postcssOptions: {
+                                plugins: [
+                                    require('autoprefixer')(),
+                                    require('cssnano')({
+                                        preset: 'default',
+                                    }),
+                                ],
+                            },
+                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            implementation: require("sass")
-                        }
-                    },
+                            sourceMap: true,  // Optional: enable source maps for easier debugging
+                        },
+                    }
                 ],
             },
         ],
@@ -64,14 +53,6 @@ const WEBPACK_CONFIG_DEVENV = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash:8].bundle.css',
-        }),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.optimize\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorPluginOptions: {
-                preset: ['default', { discardComments: { removeAll: true } }],
-            },
-            canPrint: true
         }),
         new AemClientlibGeneratorPlugin(CLIENTLIB_CONFIG),
     ],

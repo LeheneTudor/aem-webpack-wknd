@@ -4,10 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const extractCSS = new MiniCssExtractPlugin({
     filename: '[name].bundle.css',
 });
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const OptimizeCss = new OptimizeCssAssetsPlugin({
-    assetNameRegExp: /\.bundle.css/g,
-});
 const AemClientlibGeneratorPlugin = require('aem-clientlib-generator-webpack-plugin');
 const WEBPACK_CONFIG_COMMON = require('./webpack.config.common');
 const { merge } = require('webpack-merge');
@@ -21,30 +17,7 @@ const WEBPACK_CONFIG_DEV = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        query: require('./babel.config.js'),
-                    },
-                    {
-                        loader: 'eslint-loader',
-                        query: {
-                            configFile: path.resolve(
-                                __dirname,
-                                './eslint.config.js'
-                            ),
-                            fix: true,
-                            formatter: function (results) {
-                                const output = require('eslint/lib/formatters/stylish')(
-                                    results
-                                );
-                                console.log(output);
-
-                                return '';
-                            },
-                        },
-                    },
-                ],
+                use: [],
             },
             {
                 test: /\.s?css$/,
@@ -56,26 +29,13 @@ const WEBPACK_CONFIG_DEV = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: () => [
-                                require('stylelint')({
-                                    configFile: path.resolve(
-                                        __dirname,
-                                        './stylelint.config.js'
-                                    ),
-                                    fix: true,
-                                }),
-                                require('postcss-reporter'),
-                                require('autoprefixer')()
-                            ]
-                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            implementation: require("sass")
-                        }
-                    },
+                            sourceMap: true,  // Optional: enable source maps for easier debugging
+                        },
+                    }
                 ],
             },
         ],
@@ -85,7 +45,6 @@ const WEBPACK_CONFIG_DEV = {
     },
     plugins: [
         extractCSS,
-        OptimizeCss,
         new AemClientlibGeneratorPlugin(CLIENTLIB_CONFIG),
     ],
     watchOptions: {

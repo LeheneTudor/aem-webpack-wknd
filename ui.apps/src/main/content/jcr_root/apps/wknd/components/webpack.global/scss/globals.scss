@@ -1,5 +1,4 @@
 // SCSS code that doesn't generate any css code
 // helpers, mixins, variables that are needed everywhere
-
-@import "./settings/mixins.scss";
-@import "./settings/variables.scss";
+@use "./settings/_mixins.scss";
+@use "./settings/_variables.scss";

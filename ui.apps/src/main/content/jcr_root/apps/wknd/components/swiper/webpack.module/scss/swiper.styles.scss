@@ -1,7 +1,7 @@
-@import "swiper/swiper";
+@use "@module/swiper/swiper";
 
 .swiper-slide {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }

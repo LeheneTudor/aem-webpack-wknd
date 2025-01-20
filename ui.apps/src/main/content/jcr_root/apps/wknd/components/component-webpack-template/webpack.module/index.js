@@ -1,5 +1,5 @@
 import "./scss/component-webpack-template.basic.scss";
-import { qsa } from "js/helpers";
+import { qsa } from "@resolve/js/helpers";
 
 const component = qsa('[data-js="component-webpack-template"]');
 
