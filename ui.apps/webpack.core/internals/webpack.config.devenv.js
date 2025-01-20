@@ -58,7 +58,7 @@ const WEBPACK_CONFIG_DEVENV = {
     ],
     watchOptions: {
         ignored: [
-            /node_modules/,
+            '**/node_modules/**',
             '**/*.bundle.css',
             '**/*.bundle.js',
             '**/*.html',

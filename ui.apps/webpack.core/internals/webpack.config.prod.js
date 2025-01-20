@@ -17,6 +17,10 @@ const WEBPACK_CONFIG_PROD = {
                 use: [],
             },
             {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            },
+            {
                 test: /\.s?css$/,
                 exclude: /node_modules/,
                 use: [

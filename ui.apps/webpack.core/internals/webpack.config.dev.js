@@ -49,7 +49,7 @@ const WEBPACK_CONFIG_DEV = {
     ],
     watchOptions: {
         ignored: [
-            /node_modules/,
+            '**/node_modules/**',
             '**/clientlibs-webpack-*/**',
             '**/*.bundle.css',
             '**/*.bundle.js',
